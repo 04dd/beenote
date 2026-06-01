@@ -7,7 +7,7 @@ import LangIcon from '@utils/LangIcon';
 
 export default async function LanguageLayout({children, params}: {children: React.ReactNode, params: any}) {
   const lang = params.lang;
-  const client = getclient();
+  const client = await getclient();
   const langitem = await client.collection('language').getFirstListItem(`lang="${lang}"`);
   const grammar_docs = await client.collection('grammar').getFullList(1, {filter: `lang="${lang}"`});
   const custom_docs = await client.collection('custom').getFullList(1, {filter: `lang="${lang}"`});

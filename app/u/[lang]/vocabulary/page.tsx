@@ -6,7 +6,7 @@ import DeleteCollection from './DeleteCollection';
 export default async function Home({ params }: any) {
   
   const lang = params.lang;
-  const client = getclient();
+  const client = await getclient();
   const words_docs = await client.collection('vocabulary_doc').getFullList(1, {filter: `lang="${lang}"`});
 
   return (

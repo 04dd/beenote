@@ -1,5 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
+import { streamText } from 'ai';
+import { createOpenAI } from "@ai-sdk/openai";
 import getclient from "@utils/pb-client";
 import Swal from 'sweetalert2'
 import Link from 'next/link'
@@ -55,27 +57,17 @@ export default function EditorAI({ editor }: { editor: any }) {
     try {
       setWaiting(true);
       setPrompt("");
-      const res = await fetch("/api/write", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ apikey: apikey, prompt: prompt }),
+      const openai = createOpenAI({ apiKey: apikey });
+      const { textStream } = streamText({
+        model: openai("gpt-5.5"),
+        system: "You are a helpful assistant who helps with language learning.",
+        prompt,
       });
-      const data = res.body;
-      if (!data) {
-        return;
+
+      for await (const textPart of textStream) {
+        editor.commands.insertContent(textPart);
       }
-      const reader = data.getReader();
-      const decoder = new TextDecoder();
-      let done = false;
-      while (!done) {
-        const { value, done: doneReading } = await reader.read();
-        done = doneReading;
-        const chunkValue = decoder.decode(value);
-        editor.commands.insertContent(chunkValue);
-      }
-      // editor.commands.insertContent(data.result.trim());
+
       editor.commands.insertContent('\n');
       editor.commands.scrollIntoView();
       editor.commands.selectNodeBackward();

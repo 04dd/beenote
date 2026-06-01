@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import PocketBase from "pocketbase";
+import PocketBase from "pocketbase/cjs";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";

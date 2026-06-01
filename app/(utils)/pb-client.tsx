@@ -1,5 +1,5 @@
 // get PocketBase client from the client (browser) environments
-import PocketBase from "pocketbase";
+import PocketBase from "pocketbase/cjs";
 
 export default function getclient() {
   const client = new PocketBase(process.env.NEXT_PUBLIC_POCKETBASE);

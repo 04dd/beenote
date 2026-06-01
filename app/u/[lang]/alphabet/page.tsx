@@ -6,7 +6,7 @@ import {CreateCategory, CategoryTitle} from './Category';
 
 export default async function Home({ params }: any) {
   const lang = params.lang;
-  const client = getclient();
+  const client = await getclient();
   const alphabets = await client.collection('alphabet').getFullList(1, {filter: `lang="${lang}"`, sort:'created'});
   const categories = alphabets.map(item => item.category).filter((v,i,self) => self.indexOf(v) == i);
 

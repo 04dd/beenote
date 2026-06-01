@@ -6,7 +6,7 @@ import Block from '@utils/Block';
 export default async function Home({ params }: any) {
 
   const lang = params.lang;
-  const client = getclient();
+  const client = await getclient();
   const custom_docs = await client.collection('custom').getFullList(1, {filter: `lang="${lang}"`});
 
   return (

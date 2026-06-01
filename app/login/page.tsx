@@ -1,5 +1,5 @@
 'use client';
-import PocketBase from 'pocketbase';
+import PocketBase from 'pocketbase/cjs';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Logo from '@utils/Logo';

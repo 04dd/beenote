@@ -5,7 +5,7 @@ import Title from './UpdateTitle';
 export const revalidate = 0;
 
 export default async function Home({ params }: any) {
-  const client = getclient();
+  const client = await getclient();
   const document = await client.collection('custom').getFirstListItem(`lang="${params.lang}" && url="${params.url}"`);
   const id = document.id;
   const title = document.title;

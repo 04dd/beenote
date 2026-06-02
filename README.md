@@ -18,7 +18,7 @@ BeeNote is a web application for language learning, showcasing several open sour
 - [ChatGPT](https://platform.openai.com/docs/introduction) for AI writing.
 - Dark theme support.
 
-For more details see this [blog post](https://04dd.github.io/posts/beenote/). 
+For more details see this [blog post](https://3ffe.github.io/posts/beenote/). 
 
 ## TODO
 
